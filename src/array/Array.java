@@ -1,5 +1,7 @@
 package array;
 
+import java.util.Objects;
+
 public class Array<E> {
     private E[] data; // the length of data is the capacity of the array
     private int size; // the actual length of array
@@ -40,20 +42,30 @@ public class Array<E> {
     }
 
     public void add(int pos, E e) {
-        if (size == data.length) {
-            //array is full
-            throw new IllegalArgumentException("Array is full!");
-        } else if (pos < 0 || pos > size) {
+
+        if (pos < 0 || pos > size) {
             //invalid index
             throw new IllegalArgumentException("Invalid index!");
-        } else {
-            //add new element and increase size
-            for (int i = size - 1; i >= pos; i--) {
-                data[i + 1] = data[i];
-            }
-            data[pos] = e;
-            size ++;
         }
+
+        if (size == data.length) {
+            //array is full
+            resize(2 * data.length);
+        }
+            //add new element and increase size
+        for (int i = size - 1; i >= pos; i--) {
+            data[i + 1] = data[i];
+        }
+        data[pos] = e;
+        size ++;
+    }
+
+    private void resize(int newCapacity) {
+        E[] newData = (E[])new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 
     public void addLast(E e) {
@@ -94,6 +106,11 @@ public class Array<E> {
         }
         size--;
         data[size] = null; // loitering object. Not necessary
+
+        if ((size == data.length / 4) && (data.length / 2 != 0)) {
+            resize(data.length / 2);
+        }
+
         return ret;
     }
 
