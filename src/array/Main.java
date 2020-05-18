@@ -1,17 +1,21 @@
 package array;
 
+import queue.ArrayQueue;
+import queue.LoopQueue;
 import stack.ArrayStack;
 
 public class Main {
 
     public static void main(String[] args) {
-        ArrayStack<Integer> stack = new ArrayStack<>();
-        for (int i = 0; i < 5; i++) {
-            stack.push(i);
-            System.out.println(stack);
-        }
+        LoopQueue<Integer> q = new LoopQueue<>();
+        for (int i = 0; i < 10; i++) {
+            q.enqueue(i);
+            System.out.println(q);
 
-        stack.pop();
-        System.out.println(stack);
+            if (i % 3 == 2) {
+                q.dequeue();
+                System.out.println(q);
+            }
+        }
     }
 }
