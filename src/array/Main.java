@@ -1,21 +1,29 @@
 package array;
 
 import queue.ArrayQueue;
+import queue.LinkedListQueue;
 import queue.LoopQueue;
 import stack.ArrayStack;
+import linkedList.LinkedList;
+import stack.LinkedListStack;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        LoopQueue<Integer> q = new LoopQueue<>();
+
+        LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+
         for (int i = 0; i < 10; i++) {
-            q.enqueue(i);
-            System.out.println(q);
+            queue.enqueue(i);
+            System.out.println(queue);
 
             if (i % 3 == 2) {
-                q.dequeue();
-                System.out.println(q);
+                queue.dequeue();
+                System.out.println(queue);
             }
         }
+
+
     }
 }
