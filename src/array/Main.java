@@ -6,24 +6,24 @@ import queue.LoopQueue;
 import stack.ArrayStack;
 import linkedList.LinkedList;
 import stack.LinkedListStack;
+import BST.BST;
 
 
 public class Main {
 
     public static void main(String[] args) {
 
-        LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+        BST<Integer> bst = new BST<Integer>();
+        int[] nums = {5, 3, 6, 8, 4, 2};
 
-        for (int i = 0; i < 10; i++) {
-            queue.enqueue(i);
-            System.out.println(queue);
-
-            if (i % 3 == 2) {
-                queue.dequeue();
-                System.out.println(queue);
-            }
+        for (int n: nums) {
+            bst.add(n);
         }
 
+        bst.preOrder();
+        System.out.println();
+
+        System.out.println(bst);
 
     }
 }
